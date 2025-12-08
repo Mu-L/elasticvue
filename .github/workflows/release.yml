@@ -300,7 +300,7 @@ jobs:
           keys: ${{ secrets.BPP_KEYS }}
           chrome-file: artifacts/elasticvue-${{ steps.package-version.outputs.current-version }}-chrome.zip
           firefox-file: artifacts/elasticvue-${{ steps.package-version.outputs.current-version }}-firefox.zip
-          firefox-source-file: artifacts/elasticvue-${{ steps.package-version.outputs.current-version }}-firefox-source.zip
+          source-file: artifacts/elasticvue-${{ steps.package-version.outputs.current-version }}-firefox-source.zip
           edge-file: artifacts/elasticvue-${{ steps.package-version.outputs.current-version }}-edge.zip
           edge-notes: ${{ secrets.BPP_EDGE_NOTES }}
           version-file: package.json
