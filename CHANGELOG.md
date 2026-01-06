@@ -1,5 +1,9 @@
 # Changelog
 
+# 1.12.0
+
+* fix index bulk actions, fixes [#334](https://github.com/cars10/elasticvue/issues/334)
+
 ## 1.11.1
 
 * fix cloning indices, fixes [#331](https://github.com/cars10/elasticvue/issues/331)

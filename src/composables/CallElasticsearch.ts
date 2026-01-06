@@ -60,6 +60,24 @@ export function useElasticsearchAdapter() {
         const response = await elasticsearchAdapter.call(method, ...args)
         if (!response) return Promise.resolve()
 
+        if (Array.isArray(response)) {
+          requestState.value = {
+            loading: false,
+            networkError: false,
+            apiError: false,
+            apiErrorMessage: '',
+            status: 200
+          }
+          let result
+          if (response.every((r: Response) => r.ok)) {
+            result = {acknowledged: true}
+          } else {
+            result = {apiErrorMessage: 'Some requests failed.'}
+          }
+
+          return Promise.resolve(result)
+        }
+
         const contentType = response.headers.get('content-type')
         let body
         if (contentType && contentType.includes('application/json')) {
