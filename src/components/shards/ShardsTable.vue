@@ -62,7 +62,7 @@
           :key="`${col.name}_header_${i}`"
           class="text-left"
           :class="{ marked: markedColumnIndex === i }"
-          @mouseover="markColumn(i)"
+          @mouseover="markColumn(i as number)"
           @mouseleave="unmarkColumn"
         >
           <div>
@@ -86,7 +86,7 @@
           v-for="(col, i) in cols"
           :key="`${col.name}_unassigned_${i}`"
           :class="{ marked: markedColumnIndex === i }"
-          @mouseover="markColumn(i)"
+          @mouseover="markColumn(i as number)"
           @mouseleave="unmarkColumn"
         >
           <div class="flex">
@@ -106,7 +106,7 @@
           v-for="(col, i) in cols"
           :key="`${col.name}_shards_${i}`"
           :class="{ marked: markedColumnIndex === i }"
-          @mouseover="markColumn(i)"
+          @mouseover="markColumn(i as number)"
           @mouseleave="unmarkColumn"
         >
           <div class="flex items-center">
