@@ -2,6 +2,7 @@
 
 # 1.12.0
 
+* save window state in desktop app, fixes [#333](https://github.com/cars10/elasticvue/issues/333)
 * fix index bulk actions, fixes [#334](https://github.com/cars10/elasticvue/issues/334)
 
 ## 1.11.1
