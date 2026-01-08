@@ -14,8 +14,11 @@
           :data-testid="`change-language__${code}`"
           @click="changeLanguage(code)"
         >
-          <q-item-section>
+          <q-item-section avatar>
             <img :src="icon" :alt="title" height="16" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{ title }}</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
@@ -52,6 +55,7 @@ type Language = {
 const languages: Language[] = [
   { code: 'en', title: t('base.language_switcher.languages.en.title'), icon: en },
   { code: 'cn', title: t('base.language_switcher.languages.cn.title'), icon: cn },
+  { code: 'tw', title: t('base.language_switcher.languages.tw.title'), icon: cn },
   { code: 'fr', title: t('base.language_switcher.languages.fr.title'), icon: fr },
   { code: 'it', title: t('base.language_switcher.languages.it.title'), icon: it },
   { code: 'ru', title: t('base.language_switcher.languages.ru.title'), icon: ru },

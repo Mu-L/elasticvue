@@ -51,6 +51,7 @@
     "cancel": "取消",
     "close": "關閉",
     "create": "建立",
+    "update": "更新",
     "delete": "刪除",
     "success": "成功",
     "bulk": "批次操作",
@@ -128,11 +129,25 @@
       "text": "重建索引",
       "heading": "重建索引",
       "index": "索引：{index}",
+      "help": "將索引重新索引到具有不同映射和設定的新索引或現有索引中。觸發整個攝取管道。",
       "form": {
         "source": {
           "label": "重建索引至..."
         },
         "reindex": "重建索引"
+      }
+    },
+    "index_clone": {
+      "text": "複製",
+      "heading": "複製索引",
+      "index": "索引：{index}",
+      "help": "建立具有相同映射和設定的索引的精確副本。跳過攝取管道。",
+      "confirm": "將索引 '{index}' 複製到 '{dest}'？來源索引在複製作業期間將暫時設定為唯讀。",
+      "form": {
+        "target": {
+          "label": "複製到..."
+        },
+        "clone": "複製"
       }
     },
     "index_row": {
@@ -161,14 +176,23 @@
           "text": "清除所有索引快取 | 清除索引快取 | 清除 {count} 個索引快取",
           "growl": "已成功清除索引 '{index}' 的快取。"
         },
+        "set_readonly": {
+          "text": "設定為唯讀",
+          "confirm": "將索引 '{index}' 設定為唯讀？",
+          "growl": "已成功將索引 '{index}' 設定為唯讀。"
+        },
+        "set_writable": {
+          "text": "設定為可寫入",
+          "growl": "已成功將索引 '{index}' 設定為可寫入。"
+        },
         "close": {
           "text": "關閉索引 | 關閉索引 | 關閉 {count} 個索引",
           "confirm": "確定要關閉索引 '{index}'？",
-          "growl": "已成功關閉索引 '{index}'."
+          "growl": "已成功關閉索引 '{index}'。"
         },
         "open": {
           "text": "開啟索引 | 開啟索引 | 開啟 {count} 個索引",
-          "growl": "已成功開啟索引 '{index}'."
+          "growl": "已成功開啟索引 '{index}'。"
         },
         "delete_by_query": {
           "text": "刪除所有文件",
@@ -391,6 +415,13 @@
         "confirm": "確定要刪除儲存庫 '{name}' 及其中的所有快照？",
         "growl": "已成功刪除儲存庫 '{name}'."
       }
+    },
+    "repository_policies": {
+      "text": "原則",
+      "heading": "管理快照原則",
+      "repository": "儲存庫：{repository}",
+      "new_policy": "新原則",
+      "edit_policy": "編輯原則"
     }
   },
   "search": {
@@ -420,7 +451,11 @@
       "settings": {
         "columns": "欄位"
       },
-      "download_as_json": "下載為 JSON"
+      "download_as_json": "下載為 JSON",
+      "tabs": {
+        "hits": "命中",
+        "aggregations": "聚合"
+      }
     },
     "edit_document": {
       "update": {
@@ -680,6 +715,75 @@
           "failed_shards": "失敗的分片",
           "total_shards": "總分片數"
         }
+      }
+    }
+  },
+  "snapshot_policies": {
+    "new_policy": {
+      "create_policy": {
+        "growl": "已成功建立快照原則 '{name}'。"
+      },
+      "form": {
+        "id": {
+          "label": "原則 ID*"
+        },
+        "name": {
+          "label": "原則名稱*"
+        },
+        "schedule": {
+          "label": "排程*",
+          "hint": "Cron 表達式（例如，'0 30 1 * * ?' 表示每天凌晨 1:30）"
+        },
+        "repository": {
+        },
+        "indices": {
+          "label": "索引",
+          "hint": "要包含的索引清單（以逗號分隔，預設：'*'）"
+        },
+        "ignore_unavailable": {
+          "label": "忽略不可用的索引"
+        },
+        "include_global_state": {
+          "label": "包含全域狀態"
+        },
+        "retention": {
+          "heading": "保留設定",
+          "expire_after": {
+            "label": "到期時間",
+            "hint": "快照到期的時間週期（例如，'3d'、'12h'）"
+          },
+          "max_count": {
+            "label": "最大數量",
+            "hint": "要保留的快照最大數量"
+          },
+          "min_count": {
+            "label": "最小數量",
+            "hint": "要保留的快照最小數量"
+          }
+        }
+      }
+    },
+    "policies_table": {
+      "table": {
+        "headers": {
+          "id": "ID",
+          "name": "名稱",
+          "schedule": "排程",
+          "retention": "保留"
+        }
+      },
+      "delete_policy": {
+        "confirm": "刪除快照原則 '{name}'？",
+        "growl": "已成功刪除快照原則 '{name}'。"
+      },
+      "execute_policy": {
+        "confirm": "立即執行快照原則 '{name}'？",
+        "growl": "已成功執行快照原則 '{name}'。"
+      }
+    },
+    "edit_policy": {
+      "update_policy": {
+        "growl": "已成功更新快照原則 '{name}'。"
       }
     }
   },
