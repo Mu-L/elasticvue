@@ -4,6 +4,7 @@
 
 * show search aggregations, fixes [#247](https://github.com/cars10/elasticvue/issues/247)
 * i18n: adds traditional chinese, thanks @PeterDaveHello
+* i18n: adds korean, thanks @webee0317
 
 ## 1.12.0
 

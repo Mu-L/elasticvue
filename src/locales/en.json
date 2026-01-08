@@ -37,6 +37,9 @@
         },
         "tw": {
           "title": "Traditional Chinese"
+        },
+        "ko": {
+          "title": "Korean"
         }
       }
     },
