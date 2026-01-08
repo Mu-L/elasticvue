@@ -448,7 +448,11 @@
       "settings": {
         "columns": "列"
       },
-      "download_as_json": "JSON としてダウンロード"
+      "download_as_json": "JSON としてダウンロード",
+      "tabs": {
+        "hits": "ヒット",
+        "aggregations": "集約"
+      }
     },
     "edit_document": {
       "update": {

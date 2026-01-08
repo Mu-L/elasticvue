@@ -21,6 +21,7 @@ export const useSearchResultsTable = (props: SearchResultsTableProps, emit: any)
 
   const hits: Ref<any[]> = ref([])
   const tableColumns: Ref<any[]> = ref([])
+  const activeTab = ref('hits')
 
   const { callElasticsearch } = useElasticsearchAdapter()
 
@@ -53,12 +54,12 @@ export const useSearchResultsTable = (props: SearchResultsTableProps, emit: any)
   watch(
     () => props.results,
     async (newValue: EsSearchResult) => {
-      if (newValue?.hits?.hits?.length === 0) {
+      if (!newValue?.hits?.hits || newValue.hits.hits.length === 0) {
         hits.value = []
         return
       }
 
-      const results = new SearchResults(newValue?.hits?.hits)
+      const results = new SearchResults(newValue.hits.hits)
       const indices = await callElasticsearch('indexGet', { index: results.uniqueIndices })
       const allProperties: Record<string, any> = {}
 
@@ -124,6 +125,21 @@ export const useSearchResultsTable = (props: SearchResultsTableProps, emit: any)
 
   const acceptRowsPerPage = (value: boolean) => (searchStore.rowsPerPageAccepted = value)
 
+  const hasAggregations = computed(() => {
+    return props.results?.aggregations && Object.keys(props.results.aggregations).length > 0
+  })
+
+  const aggregationsJson = computed(() => {
+    if (!hasAggregations.value || !props.results.aggregations) return ''
+    return stringifyJson(props.results.aggregations, null, 2)
+  })
+
+  watch(hasAggregations, (hasAggs) => {
+    if (!hasAggs && activeTab.value === 'aggregations') {
+      activeTab.value = 'hits'
+    }
+  })
+
   return {
     acceptRowsPerPage,
     filterStateProps,
@@ -143,6 +159,9 @@ export const useSearchResultsTable = (props: SearchResultsTableProps, emit: any)
     setIndeterminate,
     allItemsSelected,
     checkAll,
-    generateDownloadData
+    generateDownloadData,
+    hasAggregations,
+    aggregationsJson,
+    activeTab
   }
 }

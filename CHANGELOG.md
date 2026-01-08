@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.13.0
+
+* show search aggregations, fixes [#247](https://github.com/cars10/elasticvue/issues/247)
+
 ## 1.12.0
 
 * save window state in desktop app, fixes [#333](https://github.com/cars10/elasticvue/issues/333)

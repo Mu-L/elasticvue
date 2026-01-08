@@ -448,7 +448,11 @@
       "settings": {
         "columns": "Columns"
       },
-      "download_as_json": "Download as json"
+      "download_as_json": "Download as json",
+      "tabs": {
+        "hits": "Hits",
+        "aggregations": "Aggregations"
+      }
     },
     "edit_document": {
       "update": {

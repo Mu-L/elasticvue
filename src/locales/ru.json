@@ -448,7 +448,11 @@
       "settings": {
         "columns": "Колонки"
       },
-      "download_as_json": "Скачать как JSON"
+      "download_as_json": "Скачать как JSON",
+      "tabs": {
+        "hits": "Результаты",
+        "aggregations": "Агрегации"
+      }
     },
     "edit_document": {
       "update": {

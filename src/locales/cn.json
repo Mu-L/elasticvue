@@ -448,7 +448,11 @@
       "settings": {
         "columns": "列"
       },
-      "download_as_json": "下载为 JSON 文件"
+      "download_as_json": "下载为 JSON 文件",
+      "tabs": {
+        "hits": "命中",
+        "aggregations": "聚合"
+      }
     },
     "edit_document": {
       "update": {

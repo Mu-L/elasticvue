@@ -9,6 +9,7 @@ import { stringifyJson } from '../../../helpers/json/stringify.ts'
 export type EsSearchResult = {
   took: number | null
   hits: EsSearchResultHits
+  aggregations?: Record<string, any>
 }
 
 type EsSearchResultHits = {
