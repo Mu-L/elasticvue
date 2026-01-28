@@ -16,15 +16,14 @@
     </td>
     <td>{{ index.status }}</td>
     <td>{{ index.uuid }}</td>
-    <td :title="aliases.join('\n')">
-      <q-circular-progress v-if="loading" indeterminate rounded color="primary" />
-      <template v-else>
+    <td :title="index.aliases ? index.aliases.join('\n') : ''">
+      <template v-if="index.aliases">
         [
-        <span v-for="(alias, i) in aliases" :key="`${index}-alias-${alias}`">
+        <span v-for="(alias, i) in index.aliases" :key="`${index.index}-alias-${alias}`">
           <a :key="alias" :title="t('indices.index_row.search.title', { index: alias })" @click.stop="showDocuments(alias)"
             >{{ alias }}
           </a>
-          <span v-if="i !== aliases.length - 1">, </span>
+          <span v-if="i !== index.aliases.length - 1">, </span>
         </span>
         ]
       </template>
@@ -203,5 +202,5 @@ const afterDelete = (index: string) => {
   emitReloadAndCloseMenu()
 }
 
-const { aliases, openModalWith, loading, emitReloadAndCloseMenu, showDocuments } = useIndexRow(props, emit)
+const { openModalWith, emitReloadAndCloseMenu, showDocuments } = useIndexRow(props, emit)
 </script>
