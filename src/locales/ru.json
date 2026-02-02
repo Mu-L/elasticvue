@@ -274,6 +274,7 @@
   },
   "cluster_nodes": {
     "heading": "Узлы",
+    "node_role": "Роль узла",
     "node_icons": {
       "master": {
         "title": "Мастер-узел"
@@ -289,7 +290,16 @@
       },
       "coordinating_only": {
         "title": "Координационный узел"
-      }
+      },
+      "cold": { "title": "Холодный узел" },
+      "frozen": { "title": "Замороженный узел" },
+      "hot": { "title": "Горячий узел" },
+      "ml": { "title": "Узел машинного обучения" },
+      "remote_cluster_client": { "title": "Узел клиента удалённого кластера" },
+      "content": { "title": "Узел контента" },
+      "transform": { "title": "Узел преобразования" },
+      "voting_only": { "title": "Узел только для голосования" },
+      "warm": { "title": "Тёплый узел" }
     },
     "node_properties": {
       "ip": "IP",

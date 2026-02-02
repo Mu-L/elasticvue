@@ -274,6 +274,7 @@
   },
   "cluster_nodes": {
     "heading": "節點",
+    "node_role": "節點角色",
     "node_icons": {
       "master": {
         "title": "主節點"
@@ -289,7 +290,16 @@
       },
       "coordinating_only": {
         "title": "僅協調節點"
-      }
+      },
+      "cold": { "title": "冷節點" },
+      "frozen": { "title": "凍結節點" },
+      "hot": { "title": "熱節點" },
+      "ml": { "title": "機器學習節點" },
+      "remote_cluster_client": { "title": "遠端叢集用戶端節點" },
+      "content": { "title": "內容節點" },
+      "transform": { "title": "轉換節點" },
+      "voting_only": { "title": "僅投票節點" },
+      "warm": { "title": "溫節點" }
     },
     "node_properties": {
       "ip": "IP",

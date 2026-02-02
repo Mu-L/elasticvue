@@ -274,6 +274,7 @@
   },
   "cluster_nodes": {
     "heading": "Nodes",
+    "node_role": "Node role",
     "node_icons": {
       "master": {
         "title": "Master node"
@@ -289,6 +290,33 @@
       },
       "coordinating_only": {
         "title": "Coordinating only node"
+      },
+      "cold": {
+        "title": "Cold node"
+      },
+      "frozen": {
+        "title": "Frozen node"
+      },
+      "hot": {
+        "title": "Hot node"
+      },
+      "ml": {
+        "title": "Machine learning node"
+      },
+      "remote_cluster_client": {
+        "title": "Remote cluster client node"
+      },
+      "content": {
+        "title": "Content node"
+      },
+      "transform": {
+        "title": "Transform node"
+      },
+      "voting_only": {
+        "title": "Voting-only node"
+      },
+      "warm": {
+        "title": "Warm node"
       }
     },
     "node_properties": {

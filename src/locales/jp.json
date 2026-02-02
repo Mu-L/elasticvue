@@ -274,6 +274,7 @@
   },
   "cluster_nodes": {
     "heading": "ノード",
+    "node_role": "ノードロール",
     "node_icons": {
       "master": {
         "title": "マスターノード"
@@ -289,7 +290,16 @@
       },
       "coordinating_only": {
         "title": "コーディネーションノード"
-      }
+      },
+      "cold": { "title": "コールドノード" },
+      "frozen": { "title": "フローズンノード" },
+      "hot": { "title": "ホットノード" },
+      "ml": { "title": "機械学習ノード" },
+      "remote_cluster_client": { "title": "リモートクラスタークライアントノード" },
+      "content": { "title": "コンテンツノード" },
+      "transform": { "title": "トランスフォームノード" },
+      "voting_only": { "title": "投票専用ノード" },
+      "warm": { "title": "ウォームノード" }
     },
     "node_properties": {
       "ip": "IP",

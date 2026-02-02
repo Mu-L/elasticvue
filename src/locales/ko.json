@@ -274,6 +274,7 @@
   },
   "cluster_nodes": {
     "heading": "노드",
+    "node_role": "노드 역할",
     "node_icons": {
       "master": {
         "title": "마스터 노드"
@@ -289,7 +290,16 @@
       },
       "coordinating_only": {
         "title": "코디네이터 노드"
-      }
+      },
+      "cold": { "title": "콜드 노드" },
+      "frozen": { "title": "프로즌 노드" },
+      "hot": { "title": "핫 노드" },
+      "ml": { "title": "머신러닝 노드" },
+      "remote_cluster_client": { "title": "원격 클러스터 클라이언트 노드" },
+      "content": { "title": "콘텐츠 노드" },
+      "transform": { "title": "트랜스폼 노드" },
+      "voting_only": { "title": "투표 전용 노드" },
+      "warm": { "title": "웜 노드" }
     },
     "node_properties": {
       "ip": "IP",

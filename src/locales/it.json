@@ -274,6 +274,7 @@
   },
   "cluster_nodes": {
     "heading": "Nodi",
+    "node_role": "Ruolo del nodo",
     "node_icons": {
       "master": {
         "title": "Nodo master"
@@ -289,7 +290,16 @@
       },
       "coordinating_only": {
         "title": "Nodo solo di coordinamento"
-      }
+      },
+      "cold": { "title": "Nodo cold" },
+      "frozen": { "title": "Nodo frozen" },
+      "hot": { "title": "Nodo hot" },
+      "ml": { "title": "Nodo machine learning" },
+      "remote_cluster_client": { "title": "Nodo client cluster remoto" },
+      "content": { "title": "Nodo content" },
+      "transform": { "title": "Nodo transform" },
+      "voting_only": { "title": "Nodo solo voto" },
+      "warm": { "title": "Nodo warm" }
     },
     "node_properties": {
       "ip": "ip",
