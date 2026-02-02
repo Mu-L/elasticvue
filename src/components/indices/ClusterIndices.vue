@@ -9,6 +9,7 @@
 
     <q-separator />
 
+    Data: {{ data }}
     <loader-status :request-state="requestState">
       <indices-table :indices="data || []" @reload="load" />
     </loader-status>
