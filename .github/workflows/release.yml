@@ -306,7 +306,7 @@ jobs:
           version-file: package.json
 
   update-aur:
-    needs: release
+    needs: publish
     runs-on: ubuntu-latest
     container:
       image: archlinux:latest
@@ -361,3 +361,14 @@ jobs:
           git commit -m "Update to v\$NEW_VER"
           git push
           EOF
+
+  update-homebrew:
+    needs: publish
+    runs-on: macos-latest
+    steps:
+      - name: Bump Homebrew Cask
+        uses: macauley/action-homebrew-bump-cask@v1
+        with:
+          token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+          cask: elasticvue
+          livecheck: true
