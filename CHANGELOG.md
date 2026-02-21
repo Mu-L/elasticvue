@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.14.0
+
+* Do not store snapshot pagination, fixes [#339](https://github.com/cars10/elasticvue/issues/339)
+* dependency updates
+
 ## 1.13.0
 
 * show search aggregations, fixes [#247](https://github.com/cars10/elasticvue/issues/247)

@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { useConnectionStore } from './connection'
 import {
-  persistPaginationProps,
   type PaginationStorePartial,
   type ReloadIntervalStorePartial,
   persistReloadIntervalProps,
@@ -23,7 +22,7 @@ export const useSnapshotsStore = () => {
       pagination: paginationStoreDefaultProps('id')
     }),
     persist: {
-      pick: ['filter', ...persistReloadIntervalProps(), ...persistPaginationProps()],
+      pick: ['filter', ...persistReloadIntervalProps()],
       key: `snapshots-${clusterUuid}`
     }
   })()
