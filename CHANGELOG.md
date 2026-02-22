@@ -3,6 +3,7 @@
 ## 1.14.0
 
 * Do not store snapshot pagination, fixes [#339](https://github.com/cars10/elasticvue/issues/339)
+* Support manual multi-level sorting and retain when paginating, fixes [#317](https://github.com/cars10/elasticvue/issues/317)
 * dependency updates
 
 ## 1.13.0

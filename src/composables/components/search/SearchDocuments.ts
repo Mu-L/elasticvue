@@ -5,6 +5,10 @@ import { Ref, ref, watch } from 'vue'
 import { parseJson } from '../../../helpers/json/parse'
 import { DEFAULT_SEARCH_QUERY_OBJ } from '../../../consts'
 import { stringifyJson } from '../../../helpers/json/stringify.ts'
+import {
+  buildQueryFromTableOptions,
+  getTableOptionsToApply
+} from '../../../helpers/search/searchQueryTableOptions'
 
 export type EsSearchResult = {
   took: number | null
@@ -70,12 +74,22 @@ export const useSearchDocuments = () => {
 
   // pagination = {sortBy: '', descending: false, page: 2, rowsPerPage: 10, rowsNumber: 2593}
   const onRequest = ({ pagination }: any) => {
-    searchStore.pagination.page = pagination.page
-    searchStore.pagination.sortBy = pagination.sortBy
-    searchStore.pagination.descending = pagination.descending
+    const query = parseJson(searchStore.searchQuery) as Record<string, unknown>
+    const tableOptions = buildQueryFromTableOptions(pagination)
+    const sortByChanged = pagination.sortBy !== searchStore.pagination.sortBy
+    const toApply =
+      sortByChanged ? tableOptions : getTableOptionsToApply(query, tableOptions, pagination)
+    Object.assign(query, toApply)
 
-    const query = parseJson(searchStore.searchQuery)
-    Object.assign(query, buildQueryFromTableOptions(pagination))
+    searchStore.pagination.page = pagination.page
+    if ('sort' in toApply) {
+      searchStore.pagination.sortBy = pagination.sortBy
+      searchStore.pagination.descending = pagination.descending
+    } else {
+      searchStore.pagination.sortBy = ''
+      searchStore.pagination.descending = false
+    }
+
     searchStore.searchQuery = stringifyJson(query)
     search()
   }
@@ -114,23 +128,4 @@ export const useSearchDocuments = () => {
   }
 }
 
-export const buildQueryFromTableOptions = (pagination: any) => {
-  if (!pagination) return {}
-
-  const from = (pagination.page - 1) * pagination.rowsPerPage
-  const size = pagination.rowsPerPage
-  const newQueryParts = { size, from, sort: [] }
-
-  const order = pagination.descending ? 'desc' : 'asc'
-  const sort: string = pagination.sortBy
-
-  if (sort && order) {
-    const sortOptions = {}
-    // @ts-expect-error any
-    sortOptions[sort] = { order }
-    // @ts-expect-error never type
-    newQueryParts.sort = [sortOptions]
-  }
-
-  return newQueryParts
-}
+export { buildQueryFromTableOptions, getTableOptionsToApply } from '../../../helpers/search/searchQueryTableOptions'

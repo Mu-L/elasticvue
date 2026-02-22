@@ -49,7 +49,7 @@
             size="md"
             no-caps
             class="btn-link q-py-none q-px-sm"
-            @click="searchStore.resetSearchQuery"
+            @click="resetAndLoad"
           />
         </div>
       </q-slide-transition>
