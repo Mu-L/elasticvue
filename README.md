@@ -55,8 +55,8 @@ You can use elasticvue in several ways, use whatever works best for you.
 ### Desktop App - *recommended*
 
 * [Windows .msi](https://update.elasticvue.com/download/windows/x86_64)
-* [Mac x68 .dmg](https://update.elasticvue.com/download/darwin/x86_64) / [Mac aarch64 .dmg](https://update.elasticvue.com/download/darwin/aarch64)
-* [Linux .AppImage](https://update.elasticvue.com/download/linux/x86_64)
+* [Homebrew](https://formulae.brew.sh/cask/elasticvue) / [Mac x68 .dmg](https://update.elasticvue.com/download/darwin/x86_64) / [Mac aarch64 .dmg](https://update.elasticvue.com/download/darwin/aarch64)
+* [Linux .AppImage](https://update.elasticvue.com/download/linux/x86_64) / [Arch AUR](https://aur.archlinux.org/packages/elasticvue-bin)
 
 ### Browser extension
 
