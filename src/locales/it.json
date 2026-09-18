@@ -11,7 +11,8 @@
         "shards": "Frammenti",
         "search": "Ricerca",
         "rest": "REST",
-        "snapshots": "Snapshots"
+        "snapshots": "Snapshots",
+        "users": "Utenti"
       }
     },
     "language_switcher": {
@@ -316,6 +317,22 @@
       "name": "nome",
       "status": "stato",
       "version": "versione"
+    }
+  },
+  "cluster_users": {
+    "heading": "Utenti",
+    "users_table": {
+      "table": {
+        "headers": {
+          "username": "nome utente",
+          "roles": "ruoli",
+          "full_name": "nome completo",
+          "email": "email",
+          "enabled": "abilitato",
+          "reserved": "riservato",
+          "deprecated": "deprecato"
+        }
+      }
     }
   },
   "query": {

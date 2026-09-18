@@ -38,6 +38,13 @@
           :to="{ name: 'snapshot_repositories' }"
           :ripple="false"
         />
+        <q-route-tab
+          v-if="connectionStore.elasticsearch"
+          id="users"
+          :label="t('base.app_header.navigation.users')"
+          :to="{ name: 'users' }"
+          :ripple="false"
+        />
         <q-route-tab id="settings" icon="settings" :to="{ name: 'settings' }" :ripple="false" />
       </q-tabs>
     </q-toolbar>

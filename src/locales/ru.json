@@ -11,7 +11,8 @@
         "shards": "Шарды",
         "search": "Поиск",
         "rest": "REST",
-        "snapshots": "Снимки"
+        "snapshots": "Снимки",
+        "users": "Пользователи"
       }
     },
     "language_switcher": {
@@ -316,6 +317,23 @@
       "name": "Имя",
       "status": "Статус",
       "version": "Версия"
+    }
+  },
+  "cluster_users": {
+    "heading": "Пользователи",
+
+    "users_table": {
+      "table": {
+        "headers": {
+          "username": "имя пользователя",
+          "roles": "роли",
+          "full_name": "полное имя",
+          "email": "эл. почта",
+          "enabled": "включён",
+          "reserved": "зарезервирован",
+          "deprecated": "устарел"
+        }
+      }
     }
   },
   "query": {

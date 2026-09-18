@@ -11,7 +11,8 @@
         "shards": "シャード",
         "search": "検索",
         "rest": "REST",
-        "snapshots": "スナップショット"
+        "snapshots": "スナップショット",
+        "users": "ユーザー"
       }
     },
     "language_switcher": {
@@ -316,6 +317,22 @@
       "name": "名前",
       "status": "ステータス",
       "version": "バージョン"
+    }
+  },
+  "cluster_users": {
+    "heading": "ユーザー",
+    "users_table": {
+      "table": {
+        "headers": {
+          "username": "ユーザー名",
+          "roles": "ロール",
+          "full_name": "氏名",
+          "email": "メール",
+          "enabled": "有効",
+          "reserved": "予約済み",
+          "deprecated": "廃止"
+        }
+      }
     }
   },
   "query": {

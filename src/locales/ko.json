@@ -11,7 +11,8 @@
         "shards": "샤드",
         "search": "검색",
         "rest": "REST",
-        "snapshots": "스냅샷"
+        "snapshots": "스냅샷",
+        "users": "사용자"
       }
     },
     "language_switcher": {
@@ -316,6 +317,22 @@
       "name": "이름",
       "status": "상태",
       "version": "버전"
+    }
+  },
+  "cluster_users": {
+    "heading": "사용자",
+    "users_table": {
+      "table": {
+        "headers": {
+          "username": "사용자 이름",
+          "roles": "역할",
+          "full_name": "이름",
+          "email": "이메일",
+          "enabled": "활성화",
+          "reserved": "예약됨",
+          "deprecated": "사용 중단"
+        }
+      }
     }
   },
   "query": {

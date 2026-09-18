@@ -2,6 +2,7 @@ import { Page } from '@playwright/test'
 import { mockElasticHome } from './home'
 import { mockElasticNodes } from './nodes'
 import { catIndices, catAliases } from '../default/indices'
+import { securityUsers, opensearchInternalUsers } from '../default/users'
 
 export const mockElastic6 = async (page: Page, { health }: { health: string } = { health: 'green' }) => {
   await mockElasticHome(page, { health })
@@ -9,13 +10,15 @@ export const mockElastic6 = async (page: Page, { health }: { health: string } = 
 
   const defaultMocks = {
     catIndices,
-    catAliases
+    catAliases,
+    securityUsers,
+    opensearchInternalUsers
   }
 
   for (const method in defaultMocks) {
     const url = defaultMocks[method].url
     const json = defaultMocks[method].json
 
-    await page.route(url, async route => (await route.fulfill({ json })))
+    await page.route(url, async (route) => await route.fulfill({ json }))
   }
 }

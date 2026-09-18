@@ -11,7 +11,8 @@
         "shards": "分片",
         "search": "搜尋",
         "rest": "REST",
-        "snapshots": "快照"
+        "snapshots": "快照",
+        "users": "使用者"
       }
     },
     "language_switcher": {
@@ -316,6 +317,22 @@
       "name": "名稱",
       "status": "狀態",
       "version": "版本"
+    }
+  },
+  "cluster_users": {
+    "heading": "使用者",
+    "users_table": {
+      "table": {
+        "headers": {
+          "username": "使用者名稱",
+          "roles": "角色",
+          "full_name": "全名",
+          "email": "電子郵件",
+          "enabled": "啟用",
+          "reserved": "內建",
+          "deprecated": "廢棄"
+        }
+      }
     }
   },
   "query": {

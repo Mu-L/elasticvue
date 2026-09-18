@@ -11,7 +11,8 @@
         "shards": "Shards",
         "search": "Search",
         "rest": "REST",
-        "snapshots": "Snapshots"
+        "snapshots": "Snapshots",
+        "users": "Users"
       }
     },
     "language_switcher": {
@@ -334,6 +335,22 @@
       "name": "name",
       "status": "status",
       "version": "version"
+    }
+  },
+  "cluster_users": {
+    "heading": "Users",
+    "users_table": {
+      "table": {
+        "headers": {
+          "username": "username",
+          "roles": "roles",
+          "full_name": "full_name",
+          "email": "email",
+          "enabled": "enabled",
+          "reserved": "reserved",
+          "deprecated": "deprecated"
+        }
+      }
     }
   },
   "query": {

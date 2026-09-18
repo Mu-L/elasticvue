@@ -3,6 +3,7 @@
 ## 1.16.0
 
 * add `/redirect_to_cluster?name=` route to deeplink to a cluster by name, fixes [#342](https://github.com/cars10/elasticvue/issues/342)
+* add users page to list cluster users and their roles
 
 ## 1.15.0
 

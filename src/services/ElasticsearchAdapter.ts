@@ -193,6 +193,10 @@ export default class ElasticsearchAdapter {
     return this.request(path, 'DELETE')
   }
 
+  securityUsers() {
+    return this.request('_security/user', 'GET')
+  }
+
   search(params: object, searchIndex?: string | string[], queryParams?: Record<string, string>) {
     const index = Array.isArray(searchIndex) ? searchIndex.join(',') : searchIndex
 

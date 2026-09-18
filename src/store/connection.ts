@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { DISTRIBUTIONS } from '../consts'
 
 export enum BuildFlavor {
   serverless = 'serverless',
@@ -68,6 +69,10 @@ export const useConnectionStore = defineStore('connection', {
     serverless(): boolean {
       if (typeof this.activeClusterIndex !== 'number') return false
       return this.clusters[this.activeClusterIndex].flavor === BuildFlavor.serverless
+    },
+    elasticsearch(): boolean {
+      if (typeof this.activeClusterIndex !== 'number') return false
+      return this.clusters[this.activeClusterIndex].distribution !== DISTRIBUTIONS.opensearch
     }
   },
   actions: {

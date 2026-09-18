@@ -11,6 +11,7 @@ import { useConnectionStore } from './store/connection'
 import WelcomePage from './components/welcome/WelcomePage.vue'
 import SnapshotRepositories from './components/repositories/SnapshotRepositories.vue'
 import RepositorySnapshots from './components/snapshots/RepositorySnapshots.vue'
+import ClusterUsers from './components/users/ClusterUsers.vue'
 import SearchDocuments from './components/search/SearchDocuments.vue'
 import ShardRecovery from './components/shardrecovery/ShardRecovery.vue'
 import { buildConfig } from './buildConfig.ts'
@@ -55,7 +56,8 @@ const routes = [
       { path: 'search', name: 'search', component: SearchDocuments },
       { path: 'rest', name: 'rest', component: RestQuery },
       { path: 'snapshot_repositories', name: 'snapshot_repositories', component: SnapshotRepositories },
-      { path: 'snapshot_repositories/:repositoryName', name: 'snapshots', component: RepositorySnapshots }
+      { path: 'snapshot_repositories/:repositoryName', name: 'snapshots', component: RepositorySnapshots },
+      { path: 'users', name: 'users', component: ClusterUsers }
     ],
     beforeEnter: (to: RouteLocation) => {
       const connectionStore = useConnectionStore()
