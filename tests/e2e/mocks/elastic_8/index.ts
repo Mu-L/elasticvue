@@ -3,7 +3,7 @@ import { mockElasticHome } from './home'
 import { mockElasticNodes } from './nodes'
 import { catAliases } from '../default/indices'
 import { catIndices } from './indices'
-import { buildSecurityUsers, buildSecurityRoles, opensearchInternalUsers } from '../default/users'
+import { buildSecurityUsers, buildSecurityRoles } from '../default/users'
 
 const VERSION = '8.15.0'
 
@@ -15,7 +15,6 @@ export const mockElastic8 = async (page: Page, { health }: { health: string } = 
     catIndices,
     catAliases,
     securityUsers: buildSecurityUsers(VERSION),
-    opensearchInternalUsers,
     securityRoles: buildSecurityRoles(VERSION)
   }
 

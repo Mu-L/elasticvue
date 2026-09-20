@@ -91,15 +91,16 @@ export const buildSecurityUsers = (version: string) => {
 }
 
 export const buildSecurityRoles = (version: string) => {
-  const json = clone(baseRoles)
+  const json: Record<string, Record<string, unknown>> = clone(baseRoles)
 
-  for (const role of Object.values(json) as Record<string, any>[]) {
+  for (const role of Object.values(json)) {
     if (!supportsRoleDescription(version)) delete role.description
     if (!supportsRoleApplications(version)) delete role.applications
 
     if (Array.isArray(role.indices) && !supportsAllowRestrictedIndices(version)) {
       role.indices = role.indices.map((entry: Record<string, unknown>) => {
-        const { allow_restricted_indices: _omit, ...rest } = entry
+        const rest = { ...entry }
+        delete rest.allow_restricted_indices
         return rest
       })
     }
@@ -119,32 +120,5 @@ export const buildSecurityRoles = (version: string) => {
   return {
     url: `http://localhost:9200/${securityApiBase(version)}/role`,
     json
-  }
-}
-
-/** @deprecated use buildSecurityUsers(version) */
-export const securityUsers = buildSecurityUsers('8.15.0')
-/** @deprecated use buildSecurityRoles(version) */
-export const securityRoles = buildSecurityRoles('8.15.0')
-export const securityUsersXpack = buildSecurityUsers('5.6.16')
-export const securityRolesXpack = buildSecurityRoles('5.6.16')
-
-export const opensearchInternalUsers = {
-  url: 'http://localhost:9200/_plugins/_security/api/internalusers',
-  json: {
-    admin: {
-      reserved: true,
-      hidden: false,
-      backend_roles: ['admin'],
-      opendistro_security_roles: [],
-      static: true
-    },
-    app_user: {
-      reserved: false,
-      hidden: false,
-      backend_roles: ['read_only'],
-      opendistro_security_roles: ['watcher_admin'],
-      static: false
-    }
   }
 }

@@ -13,9 +13,23 @@ import {
 test.describe.configure({ mode: 'parallel' })
 
 withElastic(({ mockElastic, elastic }) => {
-  if (elastic.node.startsWith('os-')) return
-
   const version = elastic.version
+  const isOpenSearch = elastic.node.startsWith('os-')
+
+  if (isOpenSearch) {
+    test.describe(`opensearch ${version}`, () => {
+      test.describe('Roles', () => {
+        test('hides roles access on OpenSearch', async ({ page }) => {
+          await mockElastic(page)
+          await setupClusterConnection(page)
+          await page.waitForResponse((response) => response.url().includes('localhost:9200') && response.ok())
+          await expect(page.locator('#users')).toHaveCount(0)
+        })
+      })
+    })
+    return
+  }
+
   const base = securityApiBase(version)
 
   test.describe(`elasticsearch ${version}`, () => {

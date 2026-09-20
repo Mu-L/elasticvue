@@ -39,7 +39,7 @@
           :ripple="false"
         />
         <q-route-tab
-          v-if="connectionStore.elasticsearch && supportsNativeSecurityApi()"
+          v-if="supportsNativeSecurityApi()"
           id="users"
           :label="t('base.app_header.navigation.users')"
           :to="{ name: 'users' }"

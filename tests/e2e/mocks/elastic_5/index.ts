@@ -2,7 +2,7 @@ import { Page } from '@playwright/test'
 import { mockElasticHome } from './home'
 import { mockElasticNodes } from './nodes'
 import { catIndices, catAliases } from '../default/indices'
-import { buildSecurityUsers, buildSecurityRoles, opensearchInternalUsers } from '../default/users'
+import { buildSecurityUsers, buildSecurityRoles } from '../default/users'
 
 const VERSION = '5.6.16'
 
@@ -14,7 +14,6 @@ export const mockElastic5 = async (page: Page, { health }: { health: string } = 
     catIndices,
     catAliases,
     securityUsers: buildSecurityUsers(VERSION),
-    opensearchInternalUsers,
     securityRoles: buildSecurityRoles(VERSION)
   }
 
