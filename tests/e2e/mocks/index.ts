@@ -50,7 +50,7 @@ const mocks = {
   8: {
     mockElastic: mockElastic8,
     elastic: {
-      version: '8.7.1',
+      version: '8.15.0',
       uuid: 'ecdKaffmR9WkFbKDW4PUWw',
       node: 'es-8-node-1'
     }

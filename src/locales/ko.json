@@ -292,15 +292,33 @@
       "coordinating_only": {
         "title": "코디네이터 노드"
       },
-      "cold": { "title": "콜드 노드" },
-      "frozen": { "title": "프로즌 노드" },
-      "hot": { "title": "핫 노드" },
-      "ml": { "title": "머신러닝 노드" },
-      "remote_cluster_client": { "title": "원격 클러스터 클라이언트 노드" },
-      "content": { "title": "콘텐츠 노드" },
-      "transform": { "title": "트랜스폼 노드" },
-      "voting_only": { "title": "투표 전용 노드" },
-      "warm": { "title": "웜 노드" }
+      "cold": {
+        "title": "콜드 노드"
+      },
+      "frozen": {
+        "title": "프로즌 노드"
+      },
+      "hot": {
+        "title": "핫 노드"
+      },
+      "ml": {
+        "title": "머신러닝 노드"
+      },
+      "remote_cluster_client": {
+        "title": "원격 클러스터 클라이언트 노드"
+      },
+      "content": {
+        "title": "콘텐츠 노드"
+      },
+      "transform": {
+        "title": "트랜스폼 노드"
+      },
+      "voting_only": {
+        "title": "투표 전용 노드"
+      },
+      "warm": {
+        "title": "웜 노드"
+      }
     },
     "node_properties": {
       "ip": "IP",
@@ -317,6 +335,57 @@
       "name": "이름",
       "status": "상태",
       "version": "버전"
+    }
+  },
+  "cluster_roles": {
+    "heading": "역할",
+    "new_role": {
+      "heading": "새 역할",
+      "form": {
+        "name": {
+          "label": "역할 이름*"
+        },
+        "description": {
+          "label": "설명"
+        },
+        "cluster": {
+          "label": "클러스터 권한"
+        },
+        "indices": {
+          "label": "인덱스 권한*",
+          "help": "인덱스 권한 항목의 JSON 배열입니다. 예:"
+        },
+        "run_as": {
+          "label": "다음으로 실행",
+          "help": "이 역할의 소유자가 가장(run as)할 수 있는 사용자 이름입니다. 예: other_user"
+        }
+      },
+      "create_role": {
+        "growl": "역할 '{name}'이(가) 성공적으로 생성되었습니다."
+      }
+    },
+    "edit_role": {
+      "heading": "역할 편집",
+      "update_role": {
+        "growl": "역할 '{name}'이(가) 성공적으로 업데이트되었습니다."
+      }
+    },
+    "role": {
+      "delete": {
+        "confirm": "역할 '{name}'을(를) 삭제하시겠습니까?",
+        "growl": "역할 '{name}'이(가) 성공적으로 삭제되었습니다."
+      }
+    },
+    "roles_table": {
+      "table": {
+        "headers": {
+          "name": "이름",
+          "description": "설명",
+          "reserved": "예약됨",
+          "deprecated": "사용 중단",
+          "cluster": "클러스터"
+        }
+      }
     }
   },
   "cluster_users": {

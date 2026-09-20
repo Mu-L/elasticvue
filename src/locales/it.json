@@ -292,15 +292,33 @@
       "coordinating_only": {
         "title": "Nodo solo di coordinamento"
       },
-      "cold": { "title": "Nodo cold" },
-      "frozen": { "title": "Nodo frozen" },
-      "hot": { "title": "Nodo hot" },
-      "ml": { "title": "Nodo machine learning" },
-      "remote_cluster_client": { "title": "Nodo client cluster remoto" },
-      "content": { "title": "Nodo content" },
-      "transform": { "title": "Nodo transform" },
-      "voting_only": { "title": "Nodo solo voto" },
-      "warm": { "title": "Nodo warm" }
+      "cold": {
+        "title": "Nodo cold"
+      },
+      "frozen": {
+        "title": "Nodo frozen"
+      },
+      "hot": {
+        "title": "Nodo hot"
+      },
+      "ml": {
+        "title": "Nodo machine learning"
+      },
+      "remote_cluster_client": {
+        "title": "Nodo client cluster remoto"
+      },
+      "content": {
+        "title": "Nodo content"
+      },
+      "transform": {
+        "title": "Nodo transform"
+      },
+      "voting_only": {
+        "title": "Nodo solo voto"
+      },
+      "warm": {
+        "title": "Nodo warm"
+      }
     },
     "node_properties": {
       "ip": "ip",
@@ -317,6 +335,57 @@
       "name": "nome",
       "status": "stato",
       "version": "versione"
+    }
+  },
+  "cluster_roles": {
+    "heading": "Ruoli",
+    "new_role": {
+      "heading": "Nuovo ruolo",
+      "form": {
+        "name": {
+          "label": "Nome ruolo*"
+        },
+        "description": {
+          "label": "Descrizione"
+        },
+        "cluster": {
+          "label": "Privilegi cluster"
+        },
+        "indices": {
+          "label": "Privilegi indici*",
+          "help": "Array JSON di voci di privilegi sugli indici. Esempio:"
+        },
+        "run_as": {
+          "label": "Esegui come",
+          "help": "Nomi utente che i proprietari di questo ruolo possono impersonare (run as). Esempio: other_user"
+        }
+      },
+      "create_role": {
+        "growl": "Il ruolo '{name}' è stato creato correttamente."
+      }
+    },
+    "edit_role": {
+      "heading": "Modifica ruolo",
+      "update_role": {
+        "growl": "Il ruolo '{name}' è stato aggiornato correttamente."
+      }
+    },
+    "role": {
+      "delete": {
+        "confirm": "Eliminare il ruolo '{name}'?",
+        "growl": "Il ruolo '{name}' è stato eliminato correttamente."
+      }
+    },
+    "roles_table": {
+      "table": {
+        "headers": {
+          "name": "nome",
+          "description": "descrizione",
+          "reserved": "riservato",
+          "deprecated": "deprecato",
+          "cluster": "cluster"
+        }
+      }
     }
   },
   "cluster_users": {

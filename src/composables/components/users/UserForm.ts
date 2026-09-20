@@ -1,5 +1,6 @@
 import { computed, ref, watch } from 'vue'
 import { useElasticsearchAdapter } from '../../CallElasticsearch'
+import { supportsUserEnabledInBody } from '../../../helpers/securitySupport.ts'
 
 export type UserFormData = {
   username: string
@@ -68,11 +69,11 @@ export const useUserRoles = (dialog: { value: boolean }) => {
 export const buildUserBody = (user: UserFormData, { includePassword }: { includePassword: boolean }) => {
   const body: Record<string, unknown> = {
     roles: user.roles,
-    enabled: user.enabled,
     full_name: user.full_name.trim(),
     email: user.email.trim()
   }
 
+  if (supportsUserEnabledInBody()) body.enabled = user.enabled
   if (includePassword) body.password = user.password
 
   return body

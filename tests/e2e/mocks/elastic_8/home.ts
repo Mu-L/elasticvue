@@ -11,7 +11,7 @@ export const mockElasticHome = async (page: Page, { health }: { health?: string 
         'cluster_name': 'es-8',
         'cluster_uuid': 'ecdKaffmR9WkFbKDW4PUWw',
         'version': {
-          'number': '8.7.1',
+          'number': '8.15.0',
           'build_flavor': 'default',
           'build_type': 'docker',
           'build_hash': 'f229ed3f893a515d590d0f39b05f68913e2d9b53',

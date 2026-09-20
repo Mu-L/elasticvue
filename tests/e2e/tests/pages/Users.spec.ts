@@ -1,23 +1,58 @@
 import { test, expect } from '@playwright/test'
 import { setupClusterConnection } from '../../helpers'
 import { withElastic } from '../../mocks'
+import {
+  securityApiBase,
+  supportsNativeSecurityApi,
+  supportsSecurityDeprecated,
+  supportsUserEnabled
+} from '../../helpers/security'
 
 test.describe.configure({ mode: 'parallel' })
+
+const waitForClusterReady = async (page: import('@playwright/test').Page) => {
+  await page.waitForResponse((response) => response.url().includes('localhost:9200') && response.ok())
+}
 
 withElastic(({ mockElastic, elastic }) => {
   if (elastic.node.startsWith('os-')) return
 
-  test.describe(`elasticsearch ${elastic.version}`, () => {
+  const version = elastic.version
+  const base = securityApiBase(version)
+
+  test.describe(`elasticsearch ${version}`, () => {
     test.describe('Users', () => {
-      test('shows a list of users', async ({ page }) => {
+      if (!supportsNativeSecurityApi(version)) {
+        test('hides users navigation', async ({ page }) => {
+          await mockElastic(page)
+          await setupClusterConnection(page)
+          await waitForClusterReady(page)
+          await expect(page.locator('#users')).toHaveCount(0)
+        })
+        return
+      }
+
+      test('shows version-appropriate users table', async ({ page }) => {
         await mockElastic(page)
         await setupClusterConnection(page)
         await page.locator('#users').click()
 
         const table = page.getByTestId('users-table')
-
         await expect(table).toContainText('app_user')
         await expect(table).toContainText('read_only')
+
+        if (supportsUserEnabled(version)) {
+          await expect(table.locator('thead')).toContainText('enabled')
+        } else {
+          await expect(table.locator('thead')).not.toContainText('enabled')
+        }
+
+        if (supportsSecurityDeprecated(version)) {
+          await expect(table.locator('thead')).toContainText('deprecated')
+          await expect(table).toContainText('deprecated_user')
+        } else {
+          await expect(table.locator('thead')).not.toContainText('deprecated')
+        }
       })
 
       test('can filter users', async ({ page }) => {
@@ -34,10 +69,12 @@ withElastic(({ mockElastic, elastic }) => {
         await expect(table).not.toContainText('app_user')
       })
 
-      test('can create a user', async ({ page }) => {
+      test('can create a user with version-safe body', async ({ page }) => {
+        let putBody: Record<string, unknown> | undefined
         await mockElastic(page)
-        await page.route('http://localhost:9200/_security/user/new_user', async (route) => {
+        await page.route(`http://localhost:9200/${base}/user/new_user`, async (route) => {
           if (route.request().method() === 'PUT') {
+            putBody = route.request().postDataJSON()
             await route.fulfill({ json: { created: true } })
             return
           }
@@ -50,17 +87,31 @@ withElastic(({ mockElastic, elastic }) => {
         await page.locator('.q-dialog input[name="username"]').fill('new_user')
         await page.locator('.q-dialog input[name="password"]').fill('secret-password')
 
+        if (supportsUserEnabled(version)) {
+          await expect(page.locator('.q-dialog').getByText('Enabled')).toBeVisible()
+        } else {
+          await expect(page.locator('.q-dialog').getByText('Enabled')).toHaveCount(0)
+        }
+
         await page.getByTestId('user-form-roles').click()
         await page.getByRole('option', { name: 'read_only' }).click()
         await page.keyboard.press('Escape')
 
         await page.locator('#create_user').click()
         await expect(page.locator('.q-dialog')).toHaveCount(0)
+
+        expect(putBody).toBeTruthy()
+        expect(putBody?.roles).toEqual(['read_only'])
+        if (supportsUserEnabled(version)) {
+          expect(putBody).toHaveProperty('enabled')
+        } else {
+          expect(putBody).not.toHaveProperty('enabled')
+        }
       })
 
       test('can edit a user', async ({ page }) => {
         await mockElastic(page)
-        await page.route('http://localhost:9200/_security/user/app_user', async (route) => {
+        await page.route(`http://localhost:9200/${base}/user/app_user`, async (route) => {
           if (route.request().method() === 'PUT') {
             await route.fulfill({ json: { created: false } })
             return
@@ -86,7 +137,7 @@ withElastic(({ mockElastic, elastic }) => {
 
       test('can delete a user', async ({ page }) => {
         await mockElastic(page)
-        await page.route('http://localhost:9200/_security/user/app_user', async (route) => {
+        await page.route(`http://localhost:9200/${base}/user/app_user`, async (route) => {
           if (route.request().method() === 'DELETE') {
             await route.fulfill({ json: { found: true } })
             return
@@ -103,9 +154,10 @@ withElastic(({ mockElastic, elastic }) => {
 
         await expect(page.getByText("The user 'app_user' was successfully deleted.")).toBeVisible()
       })
+
       test('can edit a reserved user password', async ({ page }) => {
         await mockElastic(page)
-        await page.route('http://localhost:9200/_security/user/elastic/_password', async (route) => {
+        await page.route(`http://localhost:9200/${base}/user/elastic/_password`, async (route) => {
           if (route.request().method() === 'PUT') {
             await route.fulfill({ json: {} })
             return

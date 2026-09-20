@@ -10,9 +10,9 @@
     </td>
     <td>{{ user.full_name }}</td>
     <td>{{ user.email }}</td>
-    <td>{{ user.enabled }}</td>
+    <td v-if="showEnabled">{{ user.enabled }}</td>
     <td>{{ user.reserved }}</td>
-    <td>
+    <td v-if="showDeprecated">
       {{ user.deprecated }}
       <q-icon v-if="user.deprecated_reason" name="help">
         <q-tooltip>
@@ -32,9 +32,12 @@
 <script setup lang="ts">
 import { ClusterUser } from '../../composables/components/users/ClusterUsers.ts'
 import { useUserRow } from '../../composables/components/users/UserRow.ts'
+import { supportsSecurityDeprecatedMetadata, supportsUserEnabledInBody } from '../../helpers/securitySupport.ts'
 
 const props = defineProps<{ user: ClusterUser }>()
 const emit = defineEmits<{ reload: []; edit: [user: ClusterUser] }>()
 
+const showEnabled = supportsUserEnabledInBody()
+const showDeprecated = supportsSecurityDeprecatedMetadata()
 const { deleteUser } = useUserRow(props, emit)
 </script>

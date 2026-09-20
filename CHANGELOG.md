@@ -4,6 +4,7 @@
 
 * add `/redirect_to_cluster?name=` route to deeplink to a cluster by name, fixes [#342](https://github.com/cars10/elasticvue/issues/342)
 * elasticsearch only: add user management
+* elasticsearch only: add roles management page
 
 ## 1.15.0
 

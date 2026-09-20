@@ -292,15 +292,33 @@
       "coordinating_only": {
         "title": "コーディネーションノード"
       },
-      "cold": { "title": "コールドノード" },
-      "frozen": { "title": "フローズンノード" },
-      "hot": { "title": "ホットノード" },
-      "ml": { "title": "機械学習ノード" },
-      "remote_cluster_client": { "title": "リモートクラスタークライアントノード" },
-      "content": { "title": "コンテンツノード" },
-      "transform": { "title": "トランスフォームノード" },
-      "voting_only": { "title": "投票専用ノード" },
-      "warm": { "title": "ウォームノード" }
+      "cold": {
+        "title": "コールドノード"
+      },
+      "frozen": {
+        "title": "フローズンノード"
+      },
+      "hot": {
+        "title": "ホットノード"
+      },
+      "ml": {
+        "title": "機械学習ノード"
+      },
+      "remote_cluster_client": {
+        "title": "リモートクラスタークライアントノード"
+      },
+      "content": {
+        "title": "コンテンツノード"
+      },
+      "transform": {
+        "title": "トランスフォームノード"
+      },
+      "voting_only": {
+        "title": "投票専用ノード"
+      },
+      "warm": {
+        "title": "ウォームノード"
+      }
     },
     "node_properties": {
       "ip": "IP",
@@ -317,6 +335,57 @@
       "name": "名前",
       "status": "ステータス",
       "version": "バージョン"
+    }
+  },
+  "cluster_roles": {
+    "heading": "ロール",
+    "new_role": {
+      "heading": "新規ロール",
+      "form": {
+        "name": {
+          "label": "ロール名*"
+        },
+        "description": {
+          "label": "説明"
+        },
+        "cluster": {
+          "label": "クラスター権限"
+        },
+        "indices": {
+          "label": "インデックス権限*",
+          "help": "インデックス権限エントリの JSON 配列。例:"
+        },
+        "run_as": {
+          "label": "実行ユーザー",
+          "help": "このロールの所有者がなりすまし（run as）できるユーザー名。例: other_user"
+        }
+      },
+      "create_role": {
+        "growl": "ロール '{name}' が正常に作成されました。"
+      }
+    },
+    "edit_role": {
+      "heading": "ロールの編集",
+      "update_role": {
+        "growl": "ロール '{name}' が正常に更新されました。"
+      }
+    },
+    "role": {
+      "delete": {
+        "confirm": "ロール '{name}' を削除しますか？",
+        "growl": "ロール '{name}' が正常に削除されました。"
+      }
+    },
+    "roles_table": {
+      "table": {
+        "headers": {
+          "name": "名前",
+          "description": "説明",
+          "reserved": "予約済み",
+          "deprecated": "廃止",
+          "cluster": "クラスター"
+        }
+      }
     }
   },
   "cluster_users": {

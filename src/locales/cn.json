@@ -292,15 +292,33 @@
       "coordinating_only": {
         "title": "仅协调节点"
       },
-      "cold": { "title": "冷节点" },
-      "frozen": { "title": "冻结节点" },
-      "hot": { "title": "热节点" },
-      "ml": { "title": "机器学习节点" },
-      "remote_cluster_client": { "title": "远程集群客户端节点" },
-      "content": { "title": "内容节点" },
-      "transform": { "title": "转换节点" },
-      "voting_only": { "title": "仅投票节点" },
-      "warm": { "title": "温节点" }
+      "cold": {
+        "title": "冷节点"
+      },
+      "frozen": {
+        "title": "冻结节点"
+      },
+      "hot": {
+        "title": "热节点"
+      },
+      "ml": {
+        "title": "机器学习节点"
+      },
+      "remote_cluster_client": {
+        "title": "远程集群客户端节点"
+      },
+      "content": {
+        "title": "内容节点"
+      },
+      "transform": {
+        "title": "转换节点"
+      },
+      "voting_only": {
+        "title": "仅投票节点"
+      },
+      "warm": {
+        "title": "温节点"
+      }
     },
     "node_properties": {
       "ip": "IP地址",
@@ -317,6 +335,57 @@
       "name": "名称",
       "status": "状态",
       "version": "版本"
+    }
+  },
+  "cluster_roles": {
+    "heading": "角色",
+    "new_role": {
+      "heading": "新建角色",
+      "form": {
+        "name": {
+          "label": "角色名称*"
+        },
+        "description": {
+          "label": "描述"
+        },
+        "cluster": {
+          "label": "集群权限"
+        },
+        "indices": {
+          "label": "索引权限*",
+          "help": "索引权限条目的 JSON 数组。示例："
+        },
+        "run_as": {
+          "label": "以身份运行",
+          "help": "此角色的所有者可以模拟（run as）的用户名。示例：other_user"
+        }
+      },
+      "create_role": {
+        "growl": "角色 '{name}' 已成功创建。"
+      }
+    },
+    "edit_role": {
+      "heading": "编辑角色",
+      "update_role": {
+        "growl": "角色 '{name}' 已成功更新。"
+      }
+    },
+    "role": {
+      "delete": {
+        "confirm": "删除角色 '{name}'？",
+        "growl": "角色 '{name}' 已成功删除。"
+      }
+    },
+    "roles_table": {
+      "table": {
+        "headers": {
+          "name": "名称",
+          "description": "描述",
+          "reserved": "内置",
+          "deprecated": "废弃",
+          "cluster": "集群"
+        }
+      }
     }
   },
   "cluster_users": {

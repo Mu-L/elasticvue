@@ -39,7 +39,7 @@
           :ripple="false"
         />
         <q-route-tab
-          v-if="connectionStore.elasticsearch"
+          v-if="connectionStore.elasticsearch && supportsNativeSecurityApi()"
           id="users"
           :label="t('base.app_header.navigation.users')"
           :to="{ name: 'users' }"
@@ -56,6 +56,7 @@ import { useLogo } from '../../composables/Logo'
 import ClusterSelection from '../clusterselection/ClusterSelection.vue'
 import { useTranslation } from '../../composables/i18n.ts'
 import { useConnectionStore } from '../../store/connection'
+import { supportsNativeSecurityApi } from '../../helpers/securitySupport.ts'
 
 const t = useTranslation()
 const logo = useLogo()

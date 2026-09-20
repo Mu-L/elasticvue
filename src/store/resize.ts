@@ -9,6 +9,7 @@ type ResizeState = {
   searchQuery: number
   searchTable: number
   documentEdit: number
+  roleFormIndices: number
 }
 
 export const useResizeStore = defineStore('resize', {
@@ -20,7 +21,8 @@ export const useResizeStore = defineStore('resize', {
     restForm: 400,
     searchQuery: 400,
     searchTable: 500,
-    documentEdit: 800
+    documentEdit: 800,
+    roleFormIndices: 180
   }),
   persist: true
 })

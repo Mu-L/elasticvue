@@ -5,6 +5,7 @@ import { stringifyJson } from '../helpers/json/stringify.ts'
 import { cleanIndexName } from '../helpers/cleanIndexName.ts'
 import { AuthType, ElasticsearchClusterConnection } from '../store/connection.ts'
 import { AwsClient } from 'aws4fetch'
+import { currentSecurityApiBasePath } from '../helpers/securitySupport.ts'
 
 interface IndexGetArgs {
   routing?: string
@@ -36,6 +37,10 @@ export default class ElasticsearchAdapter {
     }
 
     this.authHeader = clusterAuthHeader(auth)
+  }
+
+  private securityPath(path: string) {
+    return `${currentSecurityApiBasePath()}/${path}`
   }
 
   call(method: ElasticsearchMethod, ...args: any[]): Promise<any> {
@@ -194,23 +199,31 @@ export default class ElasticsearchAdapter {
   }
 
   securityUsers() {
-    return this.request('_security/user', 'GET')
+    return this.request(this.securityPath('user'), 'GET')
   }
 
   securityRoles() {
-    return this.request('_security/role', 'GET')
+    return this.request(this.securityPath('role'), 'GET')
+  }
+
+  securityRolePut({ name, body }: { name: string; body: object }) {
+    return this.request(this.securityPath(`role/${encodeURIComponent(name)}`), 'PUT', body)
+  }
+
+  securityRoleDelete({ name }: { name: string }) {
+    return this.request(this.securityPath(`role/${encodeURIComponent(name)}`), 'DELETE')
   }
 
   securityUserPut({ username, body }: { username: string; body: object }) {
-    return this.request(`_security/user/${encodeURIComponent(username)}`, 'PUT', body)
+    return this.request(this.securityPath(`user/${encodeURIComponent(username)}`), 'PUT', body)
   }
 
   securityUserPutPassword({ username, body }: { username: string; body: object }) {
-    return this.request(`_security/user/${encodeURIComponent(username)}/_password`, 'PUT', body)
+    return this.request(this.securityPath(`user/${encodeURIComponent(username)}/_password`), 'PUT', body)
   }
 
   securityUserDelete({ username }: { username: string }) {
-    return this.request(`_security/user/${encodeURIComponent(username)}`, 'DELETE')
+    return this.request(this.securityPath(`user/${encodeURIComponent(username)}`), 'DELETE')
   }
 
   search(params: object, searchIndex?: string | string[], queryParams?: Record<string, string>) {

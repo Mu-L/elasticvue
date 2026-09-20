@@ -2,6 +2,9 @@
   <div class="flex justify-between q-pa-md">
     <div class="flex items-center">
       <new-user @reload="emit('reload')" />
+      <router-link to="roles" class="q-ml-md">
+        {{ t('cluster_roles.heading') }}
+      </router-link>
       <filter-state
         v-model="usersStore.filter"
         :results-count="filterStateProps.resultsCount"
@@ -10,7 +13,7 @@
       />
     </div>
 
-    <filter-input v-model="usersStore.filter" :columns="['username', 'full_name', 'email', 'roles']" />
+    <filter-input v-model="usersStore.filter" :columns="filterColumns" />
   </div>
 
   <q-table
@@ -40,14 +43,17 @@ import { DEFAULT_ROWS_PER_PAGE } from '../../consts'
 import { ClusterUser } from '../../composables/components/users/ClusterUsers.ts'
 import { UsersTableProps, useUsersTable } from '../../composables/components/users/UsersTable.ts'
 import { useUsersStore } from '../../store/users.ts'
+import { useTranslation } from '../../composables/i18n.ts'
 import UserRow from './UserRow.vue'
 import NewUser from './NewUser.vue'
 import EditUser from './EditUser.vue'
 
+const t = useTranslation()
 const usersStore = useUsersStore()
 const props = defineProps<UsersTableProps>()
 const emit = defineEmits(['reload'])
 const { columns, filteredResults, filterStateProps } = useUsersTable(props)
+const filterColumns = ['username', 'full_name', 'email', 'roles']
 
 const editUser = useTemplateRef<InstanceType<typeof EditUser>>('editUser')
 const openEditDialog = (user: ClusterUser) => {

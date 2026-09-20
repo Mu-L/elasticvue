@@ -9,7 +9,7 @@ export const mockElasticNodes = async (page: Page) => {
           'ip': '192.168.32.2',
           'id': 'hrFoHMcpTD-2QseKkE8W3Q',
           'name': 'es-8-node-1',
-          'version': '8.7.1',
+          'version': '8.15.0',
           'heap.percent': '45',
           'heap.current': '230.6mb',
           'heap.max': '512mb',

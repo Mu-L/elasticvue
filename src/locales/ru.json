@@ -292,15 +292,33 @@
       "coordinating_only": {
         "title": "Координационный узел"
       },
-      "cold": { "title": "Холодный узел" },
-      "frozen": { "title": "Замороженный узел" },
-      "hot": { "title": "Горячий узел" },
-      "ml": { "title": "Узел машинного обучения" },
-      "remote_cluster_client": { "title": "Узел клиента удалённого кластера" },
-      "content": { "title": "Узел контента" },
-      "transform": { "title": "Узел преобразования" },
-      "voting_only": { "title": "Узел только для голосования" },
-      "warm": { "title": "Тёплый узел" }
+      "cold": {
+        "title": "Холодный узел"
+      },
+      "frozen": {
+        "title": "Замороженный узел"
+      },
+      "hot": {
+        "title": "Горячий узел"
+      },
+      "ml": {
+        "title": "Узел машинного обучения"
+      },
+      "remote_cluster_client": {
+        "title": "Узел клиента удалённого кластера"
+      },
+      "content": {
+        "title": "Узел контента"
+      },
+      "transform": {
+        "title": "Узел преобразования"
+      },
+      "voting_only": {
+        "title": "Узел только для голосования"
+      },
+      "warm": {
+        "title": "Тёплый узел"
+      }
     },
     "node_properties": {
       "ip": "IP",
@@ -317,6 +335,57 @@
       "name": "Имя",
       "status": "Статус",
       "version": "Версия"
+    }
+  },
+  "cluster_roles": {
+    "heading": "Роли",
+    "new_role": {
+      "heading": "Новая роль",
+      "form": {
+        "name": {
+          "label": "Имя роли*"
+        },
+        "description": {
+          "label": "Описание"
+        },
+        "cluster": {
+          "label": "Привилегии кластера"
+        },
+        "indices": {
+          "label": "Привилегии индексов*",
+          "help": "JSON-массив записей привилегий индексов. Пример:"
+        },
+        "run_as": {
+          "label": "Выполнять от имени",
+          "help": "Имена пользователей, от имени которых владельцы этой роли могут выполнять запросы (run as). Пример: other_user"
+        }
+      },
+      "create_role": {
+        "growl": "Роль '{name}' успешно создана."
+      }
+    },
+    "edit_role": {
+      "heading": "Редактировать роль",
+      "update_role": {
+        "growl": "Роль '{name}' успешно обновлена."
+      }
+    },
+    "role": {
+      "delete": {
+        "confirm": "Удалить роль '{name}'?",
+        "growl": "Роль '{name}' успешно удалена."
+      }
+    },
+    "roles_table": {
+      "table": {
+        "headers": {
+          "name": "имя",
+          "description": "описание",
+          "reserved": "зарезервирован",
+          "deprecated": "устарел",
+          "cluster": "кластер"
+        }
+      }
     }
   },
   "cluster_users": {

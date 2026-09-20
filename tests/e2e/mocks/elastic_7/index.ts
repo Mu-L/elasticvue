@@ -2,7 +2,9 @@ import { Page } from '@playwright/test'
 import { mockElasticHome } from './home'
 import { mockElasticNodes } from './nodes'
 import { catIndices, catAliases } from '../default/indices'
-import { securityUsers, opensearchInternalUsers, securityRoles } from '../default/users'
+import { buildSecurityUsers, buildSecurityRoles, opensearchInternalUsers } from '../default/users'
+
+const VERSION = '7.17.10'
 
 export const mockElastic7 = async (page: Page, { health }: { health: string } = { health: 'green' }) => {
   await mockElasticHome(page, { health })
@@ -11,9 +13,9 @@ export const mockElastic7 = async (page: Page, { health }: { health: string } = 
   const defaultMocks = {
     catIndices,
     catAliases,
-    securityUsers,
+    securityUsers: buildSecurityUsers(VERSION),
     opensearchInternalUsers,
-    securityRoles
+    securityRoles: buildSecurityRoles(VERSION)
   }
 
   for (const method in defaultMocks) {

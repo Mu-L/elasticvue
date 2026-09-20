@@ -337,6 +337,57 @@
       "version": "version"
     }
   },
+  "cluster_roles": {
+    "heading": "Roles",
+    "new_role": {
+      "heading": "New role",
+      "form": {
+        "name": {
+          "label": "Role name*"
+        },
+        "description": {
+          "label": "Description"
+        },
+        "cluster": {
+          "label": "Cluster privileges"
+        },
+        "indices": {
+          "label": "Indices privileges*",
+          "help": "JSON array of index privilege entries. Example:"
+        },
+        "run_as": {
+          "label": "Run as",
+          "help": "Usernames that owners of this role can impersonate (run as). Example: other_user"
+        }
+      },
+      "create_role": {
+        "growl": "The role '{name}' was successfully created."
+      }
+    },
+    "edit_role": {
+      "heading": "Edit role",
+      "update_role": {
+        "growl": "The role '{name}' was successfully updated."
+      }
+    },
+    "role": {
+      "delete": {
+        "confirm": "Delete role '{name}'?",
+        "growl": "The role '{name}' was successfully deleted."
+      }
+    },
+    "roles_table": {
+      "table": {
+        "headers": {
+          "name": "name",
+          "description": "description",
+          "reserved": "reserved",
+          "deprecated": "deprecated",
+          "cluster": "cluster"
+        }
+      }
+    }
+  },
   "cluster_users": {
     "heading": "Users",
     "new_user": {
