@@ -26,13 +26,6 @@ type ElasticsearchUser = {
   }
 }
 
-type OpensearchInternalUser = {
-  backend_roles?: string[]
-  opendistro_security_roles?: string[]
-  reserved?: boolean
-  static?: boolean
-}
-
 export const useClusterUsers = () => {
   const usersStore = useUsersStore()
   const { requestState, callElasticsearch } = useElasticsearchAdapter()
@@ -70,22 +63,5 @@ const mapElasticsearchUsers = (users: Record<string, ElasticsearchUser>): Cluste
       deprecated: !!user.metadata?._deprecated,
       deprecated_reason: user.metadata?._deprecated_reason || ''
     }))
-    .sort((a, b) => a.username.localeCompare(b.username))
-}
-
-const mapOpensearchUsers = (users: Record<string, OpensearchInternalUser>): ClusterUser[] => {
-  return Object.entries(users)
-    .map(([username, user]) => {
-      const roles = [...new Set([...(user.opendistro_security_roles || []), ...(user.backend_roles || [])])].sort()
-
-      return {
-        username,
-        roles,
-        full_name: '',
-        email: '',
-        enabled: true,
-        reserved: !!user.reserved || !!user.static
-      }
-    })
     .sort((a, b) => a.username.localeCompare(b.username))
 }
