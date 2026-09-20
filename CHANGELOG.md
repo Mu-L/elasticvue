@@ -3,6 +3,7 @@
 ## 1.16.0
 
 * add `/redirect_to_cluster?name=` route to deeplink to a cluster by name, fixes [#342](https://github.com/cars10/elasticvue/issues/342)
+* fix error on indices page when user has no rights to view aliases, fixes [#358](https://github.com/cars10/elasticvue/issues/358)
 * elasticsearch only: add user management
 * elasticsearch only: add roles management page
 

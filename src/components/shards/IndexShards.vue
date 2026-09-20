@@ -40,6 +40,7 @@ const t = useTranslation()
 const shards: Ref<TableShards> = ref({} as TableShards)
 const shardsStore = useShardsStore()
 const { requestState, callElasticsearch } = useElasticsearchAdapter()
+const { callElasticsearch: callEnrichment } = useElasticsearchAdapter()
 
 type CatIndicesParams = {
   h: string[]
@@ -55,16 +56,37 @@ const load = async () => {
 
   if (shardsStore.health) catIndicesParams['health'] = shardsStore.health
 
-  const catIndices = callElasticsearch('catIndices', catIndicesParams)
-  const catShards = callElasticsearch('catShards', CAT_SHARDS_PARAMS)
-  const catNodes = callElasticsearch('catNodes', { h: ['name'] })
+  try {
+    const rawShards = (await callElasticsearch('catShards', CAT_SHARDS_PARAMS)) as EsShard[]
 
-  const [indices, rawShards, nodes]: [EsShardIndex[], EsShard[], Partial<EsNode>[]] = await Promise.all([
-    catIndices,
-    catShards,
-    catNodes
-  ])
-  shards.value = convertShards(rawShards, indices, nodes)
+    let indices: EsShardIndex[] = []
+    try {
+      indices = (await callEnrichment('catIndices', catIndicesParams)) as EsShardIndex[]
+    } catch {
+      // Index health is enrichment; still show shards without it
+      indices = [...new Set(rawShards.map((shard) => shard.index))].map((index) => ({
+        index,
+        health: '',
+        pri: '',
+        rep: '',
+        status: ''
+      }))
+    }
+
+    let nodes: Partial<EsNode>[] = []
+    try {
+      nodes = (await callEnrichment('catNodes', { h: ['name'] })) as Partial<EsNode>[]
+    } catch {
+      // Node list is enrichment; derive names from shard assignments when missing
+      nodes = [
+        ...new Set(rawShards.map((shard) => shard.node?.split(/\s/)[0]).filter((name): name is string => Boolean(name)))
+      ].map((name) => ({ name }))
+    }
+
+    shards.value = convertShards(rawShards, indices, nodes)
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 watch(() => shardsStore.health, load)

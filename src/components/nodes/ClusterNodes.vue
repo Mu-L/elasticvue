@@ -146,17 +146,26 @@ const CAT_METHOD_PARAMS = {
 
 const data: Ref<EsNode[]> = ref([])
 const { requestState, callElasticsearch } = useElasticsearchAdapter()
+const { callElasticsearch: callEnrichment } = useElasticsearchAdapter()
 const load = async () => {
   data.value = []
-  const catNodes = callElasticsearch('catNodes', CAT_METHOD_PARAMS)
-  const nodesInfo = callElasticsearch('nodes')
+  try {
+    const nodes = (await callElasticsearch('catNodes', CAT_METHOD_PARAMS)) as EsNode[]
 
-  const [nodes, nodeAttributes]: [EsNode[], NodeAttributes] = await Promise.all([catNodes, nodesInfo])
+    let nodeAttributes: NodeAttributes = { nodes: {} }
+    try {
+      nodeAttributes = (await callEnrichment('nodes')) as NodeAttributes
+    } catch {
+      // Attributes are enrichment; listing nodes should still work without them
+    }
 
-  data.value = nodes.map((node) => {
-    const attributes = flattenObj(nodeAttributes.nodes[node.id]?.settings?.node?.attr)
-    return Object.assign({}, node, { attributes })
-  })
+    data.value = nodes.map((node) => {
+      const attributes = flattenObj(nodeAttributes.nodes[node.id]?.settings?.node?.attr)
+      return Object.assign({}, node, { attributes })
+    })
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 onMounted(load)

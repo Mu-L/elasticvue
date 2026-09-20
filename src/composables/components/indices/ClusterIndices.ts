@@ -19,6 +19,8 @@ type IndexGetAliasResponse = Record<string, AliasData>
 export const useClusterIndices = () => {
   const indicesStore = useIndicesStore()
   const { requestState, callElasticsearch } = useElasticsearchAdapter()
+  // Separate adapter so enrichment 403s do not flip LoaderStatus into the error state
+  const { callElasticsearch: callEnrichment } = useElasticsearchAdapter()
   const data: Ref<EsIndex[] | null> = ref(null)
 
   const CAT_INDICES_PARAMS: CatIndicesParams = {
@@ -29,10 +31,14 @@ export const useClusterIndices = () => {
 
   const load = async () => {
     try {
-      const [indices, aliasesData] = (await Promise.all([
-        callElasticsearch('catIndices', CAT_INDICES_PARAMS),
-        callElasticsearch('indexGetAlias', { index: '*' })
-      ])) as [EsIndex[], IndexGetAliasResponse]
+      const indices = (await callElasticsearch('catIndices', CAT_INDICES_PARAMS)) as EsIndex[]
+
+      let aliasesData: IndexGetAliasResponse = {}
+      try {
+        aliasesData = (await callEnrichment('indexGetAlias', { index: '*' })) as IndexGetAliasResponse
+      } catch {
+        aliasesData = {}
+      }
 
       indices.forEach((index: EsIndex) => {
         if (aliasesData[index.index] && aliasesData[index.index].aliases) {

@@ -31,6 +31,29 @@ withElastic(({ mockElastic, elastic }) => {
         await expect(table).toContainText('movies')
         await expect(table).not.toContainText('omdb')
       })
+
+      test('still lists indices when alias call is forbidden', async ({ page }) => {
+        await mockElastic(page)
+        await page.route('http://localhost:9200/*/_alias', async (route) => {
+          await route.fulfill({
+            status: 403,
+            json: {
+              error: {
+                type: 'security_exception',
+                reason: 'no permissions for [indices:admin/aliases/get]'
+              },
+              status: 403
+            }
+          })
+        })
+        await setupClusterConnection(page)
+        await page.locator('#indices').click()
+
+        const table = page.getByTestId('indices-table')
+        await expect(table).toContainText('movies')
+        await expect(table).toContainText('omdb')
+        await expect(page.locator('.q-banner')).not.toBeVisible()
+      })
     })
   })
 })

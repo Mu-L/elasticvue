@@ -52,6 +52,8 @@ export const useSnackbar = () => {
         snackbarOptions.title = '400 Bad Request'
       } else if (status === '401') {
         snackbarOptions.title = '401 Not authorized'
+      } else if (status === '403') {
+        snackbarOptions.title = '403 Forbidden'
       } else if (status === '404') {
         snackbarOptions.title = '404 Not found'
       } else if (status === '405') {
