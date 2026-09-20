@@ -321,6 +321,50 @@
   },
   "cluster_users": {
     "heading": "Utilisateurs",
+    "new_user": {
+      "heading": "Nouvel utilisateur",
+      "form": {
+        "username": {
+          "label": "Nom d'utilisateur*"
+        },
+        "password": {
+          "label": "Mot de passe*"
+        },
+        "roles": {
+          "label": "Rôles*"
+        },
+        "full_name": {
+          "label": "Nom complet"
+        },
+        "email": {
+          "label": "E-mail"
+        },
+        "enabled": {
+          "label": "Activé"
+        }
+      },
+      "create_user": {
+        "growl": "L'utilisateur '{username}' a été créé avec succès."
+      }
+    },
+    "edit_user": {
+      "heading": "Modifier l'utilisateur",
+      "form": {
+        "password": {
+          "label": "Mot de passe",
+          "hint": "Laisser vide pour conserver le mot de passe actuel"
+        }
+      },
+      "update_user": {
+        "growl": "L'utilisateur '{username}' a été mis à jour avec succès."
+      }
+    },
+    "user": {
+      "delete": {
+        "confirm": "Supprimer l'utilisateur '{username}' ?",
+        "growl": "L'utilisateur '{username}' a été supprimé avec succès."
+      }
+    },
     "users_table": {
       "table": {
         "headers": {

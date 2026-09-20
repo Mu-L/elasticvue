@@ -28,6 +28,16 @@ export const securityUsers = {
   }
 }
 
+export const securityRoles = {
+  url: 'http://localhost:9200/_security/role',
+  json: {
+    superuser: { cluster: ['all'] },
+    read_only: { cluster: ['monitor'] },
+    watcher_admin: { cluster: ['monitor'] },
+    viewer: { indices: [] }
+  }
+}
+
 export const opensearchInternalUsers = {
   url: 'http://localhost:9200/_plugins/_security/api/internalusers',
   json: {

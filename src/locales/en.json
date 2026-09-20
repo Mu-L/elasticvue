@@ -339,6 +339,50 @@
   },
   "cluster_users": {
     "heading": "Users",
+    "new_user": {
+      "heading": "New user",
+      "form": {
+        "username": {
+          "label": "Username*"
+        },
+        "password": {
+          "label": "Password*"
+        },
+        "roles": {
+          "label": "Roles*"
+        },
+        "full_name": {
+          "label": "Full name"
+        },
+        "email": {
+          "label": "Email"
+        },
+        "enabled": {
+          "label": "Enabled"
+        }
+      },
+      "create_user": {
+        "growl": "The user '{username}' was successfully created."
+      }
+    },
+    "edit_user": {
+      "heading": "Edit user",
+      "form": {
+        "password": {
+          "label": "Password",
+          "hint": "Leave empty to keep the current password"
+        }
+      },
+      "update_user": {
+        "growl": "The user '{username}' was successfully updated."
+      }
+    },
+    "user": {
+      "delete": {
+        "confirm": "Delete user '{username}'?",
+        "growl": "The user '{username}' was successfully deleted."
+      }
+    },
     "users_table": {
       "table": {
         "headers": {

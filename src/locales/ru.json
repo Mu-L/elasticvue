@@ -321,7 +321,50 @@
   },
   "cluster_users": {
     "heading": "Пользователи",
-
+    "new_user": {
+      "heading": "Новый пользователь",
+      "form": {
+        "username": {
+          "label": "Имя пользователя*"
+        },
+        "password": {
+          "label": "Пароль*"
+        },
+        "roles": {
+          "label": "Роли*"
+        },
+        "full_name": {
+          "label": "Полное имя"
+        },
+        "email": {
+          "label": "Эл. почта"
+        },
+        "enabled": {
+          "label": "Включён"
+        }
+      },
+      "create_user": {
+        "growl": "Пользователь '{username}' успешно создан."
+      }
+    },
+    "edit_user": {
+      "heading": "Редактировать пользователя",
+      "form": {
+        "password": {
+          "label": "Пароль",
+          "hint": "Оставьте пустым, чтобы сохранить текущий пароль"
+        }
+      },
+      "update_user": {
+        "growl": "Пользователь '{username}' успешно обновлён."
+      }
+    },
+    "user": {
+      "delete": {
+        "confirm": "Удалить пользователя '{username}'?",
+        "growl": "Пользователь '{username}' успешно удалён."
+      }
+    },
     "users_table": {
       "table": {
         "headers": {

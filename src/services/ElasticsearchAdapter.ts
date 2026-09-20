@@ -197,6 +197,22 @@ export default class ElasticsearchAdapter {
     return this.request('_security/user', 'GET')
   }
 
+  securityRoles() {
+    return this.request('_security/role', 'GET')
+  }
+
+  securityUserPut({ username, body }: { username: string; body: object }) {
+    return this.request(`_security/user/${encodeURIComponent(username)}`, 'PUT', body)
+  }
+
+  securityUserPutPassword({ username, body }: { username: string; body: object }) {
+    return this.request(`_security/user/${encodeURIComponent(username)}/_password`, 'PUT', body)
+  }
+
+  securityUserDelete({ username }: { username: string }) {
+    return this.request(`_security/user/${encodeURIComponent(username)}`, 'DELETE')
+  }
+
   search(params: object, searchIndex?: string | string[], queryParams?: Record<string, string>) {
     const index = Array.isArray(searchIndex) ? searchIndex.join(',') : searchIndex
 

@@ -28,7 +28,8 @@ export const useUsersTable = (props: UsersTableProps) => {
     { label: t('cluster_users.users_table.table.headers.email'), field: 'email', align: 'left' },
     { label: t('cluster_users.users_table.table.headers.enabled'), field: 'enabled', align: 'left' },
     { label: t('cluster_users.users_table.table.headers.reserved'), field: 'reserved', align: 'left' },
-    { label: t('cluster_users.users_table.table.headers.deprecated'), field: 'deprecated', align: 'left' }
+    { label: t('cluster_users.users_table.table.headers.deprecated'), field: 'deprecated', align: 'left' },
+    { label: '' }
   ])
 
   return {

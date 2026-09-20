@@ -321,6 +321,50 @@
   },
   "cluster_users": {
     "heading": "ユーザー",
+    "new_user": {
+      "heading": "新規ユーザー",
+      "form": {
+        "username": {
+          "label": "ユーザー名*"
+        },
+        "password": {
+          "label": "パスワード*"
+        },
+        "roles": {
+          "label": "ロール*"
+        },
+        "full_name": {
+          "label": "氏名"
+        },
+        "email": {
+          "label": "メール"
+        },
+        "enabled": {
+          "label": "有効"
+        }
+      },
+      "create_user": {
+        "growl": "ユーザー '{username}' を作成しました。"
+      }
+    },
+    "edit_user": {
+      "heading": "ユーザーを編集",
+      "form": {
+        "password": {
+          "label": "パスワード",
+          "hint": "空のままにすると現在のパスワードを維持します"
+        }
+      },
+      "update_user": {
+        "growl": "ユーザー '{username}' を更新しました。"
+      }
+    },
+    "user": {
+      "delete": {
+        "confirm": "ユーザー '{username}' を削除しますか？",
+        "growl": "ユーザー '{username}' を削除しました。"
+      }
+    },
     "users_table": {
       "table": {
         "headers": {

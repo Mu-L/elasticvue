@@ -321,6 +321,50 @@
   },
   "cluster_users": {
     "heading": "사용자",
+    "new_user": {
+      "heading": "새 사용자",
+      "form": {
+        "username": {
+          "label": "사용자 이름*"
+        },
+        "password": {
+          "label": "비밀번호*"
+        },
+        "roles": {
+          "label": "역할*"
+        },
+        "full_name": {
+          "label": "이름"
+        },
+        "email": {
+          "label": "이메일"
+        },
+        "enabled": {
+          "label": "활성화"
+        }
+      },
+      "create_user": {
+        "growl": "사용자 '{username}'가 생성되었습니다."
+      }
+    },
+    "edit_user": {
+      "heading": "사용자 편집",
+      "form": {
+        "password": {
+          "label": "비밀번호",
+          "hint": "비워 두면 현재 비밀번호를 유지합니다"
+        }
+      },
+      "update_user": {
+        "growl": "사용자 '{username}'가 업데이트되었습니다."
+      }
+    },
+    "user": {
+      "delete": {
+        "confirm": "사용자 '{username}'를 삭제할까요?",
+        "growl": "사용자 '{username}'가 삭제되었습니다."
+      }
+    },
     "users_table": {
       "table": {
         "headers": {

@@ -14,17 +14,27 @@
     <td>{{ user.reserved }}</td>
     <td>
       {{ user.deprecated }}
-      <q-icon name="help" v-if="user.deprecated_reason">
+      <q-icon v-if="user.deprecated_reason" name="help">
         <q-tooltip>
           {{ user.deprecated_reason }}
         </q-tooltip>
       </q-icon>
+    </td>
+    <td>
+      <q-btn-group>
+        <q-btn icon="edit" color="dark-grey" data-testid="edit-user" @click="emit('edit', user)" />
+        <q-btn icon="delete" color="dark-grey" data-testid="delete-user" :disable="user.reserved" @click="deleteUser" />
+      </q-btn-group>
     </td>
   </tr>
 </template>
 
 <script setup lang="ts">
 import { ClusterUser } from '../../composables/components/users/ClusterUsers.ts'
+import { useUserRow } from '../../composables/components/users/UserRow.ts'
 
-defineProps<{ user: ClusterUser }>()
+const props = defineProps<{ user: ClusterUser }>()
+const emit = defineEmits<{ reload: []; edit: [user: ClusterUser] }>()
+
+const { deleteUser } = useUserRow(props, emit)
 </script>

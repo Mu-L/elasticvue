@@ -3,7 +3,7 @@ import { mockElasticHome } from './home'
 import { mockElasticNodes } from './nodes'
 import { catAliases } from '../default/indices'
 import { catIndices } from './indices'
-import { securityUsers, opensearchInternalUsers } from '../default/users'
+import { securityUsers, opensearchInternalUsers, securityRoles } from '../default/users'
 
 export const mockElastic8 = async (page: Page, { health }: { health: string } = { health: 'green' }) => {
   await mockElasticHome(page, { health })
@@ -13,7 +13,8 @@ export const mockElastic8 = async (page: Page, { health }: { health: string } = 
     catIndices,
     catAliases,
     securityUsers,
-    opensearchInternalUsers
+    opensearchInternalUsers,
+    securityRoles
   }
 
   for (const method in defaultMocks) {

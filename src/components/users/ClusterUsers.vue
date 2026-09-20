@@ -10,7 +10,7 @@
     <q-separator />
 
     <loader-status :request-state="requestState">
-      <users-table :users="data || []" />
+      <users-table :users="data || []" @reload="load" />
     </loader-status>
   </q-card>
 </template>
